@@ -1,5 +1,4 @@
 class Utilizador
-
 	attr_accessor :nome, :mail, :password, :nickname
 
 	def initialize(nome,mail,password,nickname)
@@ -9,4 +8,3 @@ class Utilizador
 		@nickname=nickname
 	end
 end
-
