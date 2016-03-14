@@ -15,7 +15,7 @@ class Historico
       end
   end
 
-  def toString()
+  def toString
       @equipas.each_pair do |equipa , odd|
         print equipa + " > "
         @equipas[equipa].each do |odd|
@@ -28,10 +28,11 @@ end
 
 
 
-person =   {"porto"=>"1.2", "empate"=>"3", "braga"=>"3.5"}
-person1 =   {"porto"=>"1.5", "empate"=>"2.5", "braga"=>"4"}
+#person =   {"porto"=>"1.2", "empate"=>"3", "braga"=>"3.5"}
+#person1 =   {"porto"=>"1.5", "empate"=>"2.5", "braga"=>"4"}
 
-evento1 = Historico.new(person)
-evento1.ultimaOdd(person1)
-evento1.toString
+#evento1 = Historico.new(person)
+#evento1.ultimaOdd(person1)
+#evento1.toString
+
 
