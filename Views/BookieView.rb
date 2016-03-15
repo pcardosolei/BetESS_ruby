@@ -1,3 +1,5 @@
+require_relative'Bookie.rb'
+
 class BookieView	
 	
 	def initialize()
@@ -8,7 +10,11 @@ class BookieView
 		nome =gets.chomp
 		puts "Insira o email do Bookie."
 		mail =gets.chomp
-		apostador=[nome,mail]
+		puts "Insira o password do Bookie."
+		password =gets.chomp
+		puts "Insira o nick do Bookie."
+		nick =gets.chomp
+		bookie=[nome,mail,password,nick]
 	end
 
 	def verBookie(nome,mail)

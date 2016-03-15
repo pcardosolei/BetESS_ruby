@@ -1,37 +1,31 @@
 #require_relative'Utilizador.rb'
-#require_relative'Apostador.rb'
-#require_relative'ApostadorView.rb'
+require_relative'Apostador.rb'
+require_relative'ApostadorView.rb'
 
 class ApostadorController
 	
 	attr_accessor :apostadorView,:apostador
 
-	def initialize()
-		@apostadorView=ApostadorView.new
-		@apostador=Apostador.new
+	def initialize
+		@apostadorView=ApostadorView.new	
 	end
 
-	def initialize(nome,mail,password,nickname,disponivel)
-		@apostador.nome=nome
-		@apostador.mail=mail
-		@apostador.password=password
-		@apostador.nickname=nickname
-		@apostador.disponivel=disponivel
-	end
-
-	def criarApostador()
+	def criarApostador
 		lista=@apostadorView.criarApostadorView
-		@apostador.nome=lista[0]
-		@apostador.mail=lista[1]
-		@apostador.disponivel=lista[2]
-		
+		@apostador=Apostador.new(lista[0],lista[1],lista[2],lista[3],lista[4])
 	end
+	
 	def levantamento(valor)
 		if testaDisponivel(valor) 
 			@apostador.disponivel -= valor
 		else
 			puts "Saldo insuficiente"
 		end
+	end
+
+	def adicionaAposta(aposta)
+		tam=@apostador.listaApostas.length
+		@apostador.listaApostadores[tam]=aposta
 	end
 
 	def actualizaDisponivel(valor)
