@@ -1,6 +1,7 @@
 require_relative'Utilizador.rb'
 
 class Apostador < Utilizador
+
 	
 	attr_accessor :disponivel,:listaApostas
 
@@ -8,9 +9,5 @@ class Apostador < Utilizador
 		super(nome,mail,password,nickname)
 		@disponivel=disponivel
 		@listaApostas=Hash.new("Lista de Apostas")
-	end
-
-	def verificaUtilizador(nome,password)
-		super
 	end
 end

@@ -1,6 +1,6 @@
 require_relative'Apostador.rb'
 
-class Aposta 
+class Aposta
 	attr_accessor :valor, :opcao, :odd, :estado, :apostador
 
 	def initialize(valor,opcao,odd,apostador,estado=true)
@@ -10,5 +10,3 @@ class Aposta
 		@apostador=apostador
 	end
 end
-
-
