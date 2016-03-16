@@ -1,24 +1,20 @@
 module Subject
   def initialize
-    @observers = []
+    @listaObservers = []
   end
-  def add_observer(observer)
-    @observers << observer
+
+  def adicionar_observer(observer)
+    @listaObservers << observer
   end
-  def delete_observer(observer)
-    @observer.delete(observer)
+
+  def apagar_observer(observer)
+    @listaObserver.delete(observer)
   end
-  def notify_observers
-    @observers.each do |observer|
-      observer.update(self)
+
+  def notify_Observers(tipo)
+    @listaObservers.each do |observer|
+      observer.update(self,tipo)
     end
   end
 
-  def notifyObservers(observer,message)
-  	@observers.each do|obj|
-  		if obj == observer
-  			obj.update()
-  		end
-  	end
-  end
 end

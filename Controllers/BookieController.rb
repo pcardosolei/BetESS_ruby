@@ -1,7 +1,10 @@
-require_relative'Bookie.rb'
-require_relative'BookieView.rb'
+require_relative'../Models/Bookie.rb'
+require_relative'../Views/BookieView.rb'
+
+
 
 class BookieController
+	#include Observer fazer uma classe observer vazia para enganar o ..?
 	
 	attr_accessor :bookieView,:bookie
 
@@ -16,5 +19,17 @@ class BookieController
 
 	def verificaUtilizador(nome,password)
 		@apostador.verificaUtilizador(nome,password)
+	end
+
+	def update(obj,tipo)
+		case tipo
+		when "fechado"
+			total=0
+			obj.apostas.each do |x|
+				total +=x
+			end
+			puts "Total #{total}"
+		end
+
 	end
 end
