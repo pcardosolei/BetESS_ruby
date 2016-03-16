@@ -27,7 +27,7 @@ class Evento
   def open
     @state=true
   end
-  
+
   def close
     @state = false
     notify_Observers("fechado")

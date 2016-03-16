@@ -1,6 +1,7 @@
 require_relative './EventosController'
 require_relative './ApostadorController'
 require_relative './ApostaController'
+require_relative './BookieController'
 
 class MainController
 
@@ -11,6 +12,7 @@ class MainController
     @listaBookies=Hash.new("Lista de Bookies")
     @apostadorController = ApostadorController.new
     @apostaControl = ApostaController.new
+    @bookieControl = BookieController.new
   end
 
   #EVENTOS
@@ -43,9 +45,9 @@ class MainController
   end
 
   #Aposta
-  def criarApostaEvento
+  def criarApostaEvento(apostador)
     evento = @eventoControl.getEvent(@eventos)
-     @apostaControl.criarAposta(@listaApostadores['luis'],evento)
+    @apostaControl.criarAposta(@listaApostadores[apostador],evento)
   end
 
   def mostraListaApostas
@@ -54,14 +56,23 @@ class MainController
   end
 
   #Bookie
-  def criarBookieMain
-    bookie=@bookie.criarBookie
-    tam=@listaBookies.length
+  def criarBookie
+    bookie=@bookieControl.criarBookie
     @listaBookies[bookie.nickname]=bookie
   end
 
   def encontraBookie(key)
-    @listaBookies[key]
+    @listaBookies[key].nickname
+  end
+
+  def verificaBookie(nickname,password)
+    flag = false
+    for key in @listaBookies.keys()
+      if key==nickname && @listaBookies[nickname].password==password
+        flag = true
+      end
+    end
+    flag
   end
 
   #Apostador
@@ -71,35 +82,26 @@ class MainController
   end
 
   def encontraApostador(key)
-    @listaApostadores[key]
+    @listaApostadores[key].nickname
   end
 
   def listaApostadores
     @apostadorController.listaApostadores
   end
+
+  def verificaApostador(nickname,password)
+    flag=false
+    for key in @listaApostadores.keys()
+      if key==nickname && @listaApostadores[nickname].password==password
+        flag = true
+      end
+    end
+    flag
+  end
+
 end
 
 
-ev1 = {"porto"=> "1,5", "empate"=> "2", "braga"=> "3"}
-evento1 = Evento.new(ev1)
-ev2 = {"braga"=> "2", "empate" => "1,5", "guimaraes" => "2"}
-evento2 = Evento.new(ev2)
-ap1 = Apostador.new("luis","luis@gmail.com","123","luis","0")
-ap2 = Apostador.new("paulo","paulo@gmail.com","1234","paulo","0")
 
 
-luis = MainController.new
-luis.addEvento(evento1)
-luis.addEvento(evento2)
-luis.showEventos
-luis.editarOdds
-luis.showHistorico
-#luis.showEventos
-#luis.criarApostaEvento
-#luis.mostraListaApostas
-
-
-#luis.criarApostador
-#luis.criarEvento
-#luis.criarApostaEvento
 

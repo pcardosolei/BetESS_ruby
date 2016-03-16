@@ -7,7 +7,6 @@ class ApostadorController
 
 	def initialize
 		@apostadorView=ApostadorView.new
-		@apostador=Hash.new{"Sem Apostadores"}
 	end
 
 	def criarApostador

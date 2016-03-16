@@ -1,41 +1,13 @@
-require_relative'./Controllers/ApostadorController.rb'
-require_relative'./Controllers/ApostaController.rb'
-require_relative'./Controllers/BookieController.rb'
-require 'colorize'
+require_relative'./Controllers/MainController.rb'
 
 class Facade
-	#attr_accessor:apostador
 
 	def initialize()
-		@apostador=ApostadorController.new
-		@aposta=ApostaController.new
-		@bookie=BookieController.new
-		@listaApostadores=Hash.new("Lista de Apostadores")
-		@listaBookies=Hash.new("Lista de Bokies")
+		@main = MainController.new
 		@flag=true
 		@login=0
 		@opcao=-1
-	end
-
-	def verificaApostador(nickname,password)
-		flag=false
-		for key in @listaApostadores.keys()
-			if key==nickname && @listaApostadores[nickname].password==password
-				#apostador=@listaApostadores[nickname]
-				flag=true
-			end
-		end
-		flag
-	end
-
-	def verificaBookie(nickname,password)
-		bookie=""
-		for key in @listaBookies.keys()
-			if key==nickname && @listaBookies[nickname].password==password
-				bookie=@listaBookies[nickname]
-			end
-		end
-		bookie
+    @nome = " "
 	end
 
 	def login
@@ -43,7 +15,7 @@ class Facade
 		while @flag
 		puts "Menu Login
       	1: Como Apostador
-      	2: Como Bookie".light_blue
+      	2: Como Bookie"
 		case gets.strip
   		when "1"
   			puts "\e[H\e[2J"
@@ -51,21 +23,23 @@ class Facade
   			user=gets.chomp
   			puts "password:"
   			password=gets.chomp
-    		apostador=self.verificaApostador(user,password)
+    		apostador=@main.verificaApostador(user,password)
     		if apostador
     			puts "LOGADO COMO APOSTADOR"
+          nome = @main.encontraApostador(user)
     			@login=1
     			@flag=false
     		end
   		when "2"
   			puts "\e[H\e[2J"
   			puts "Username:"
-  			bookie=gets.chomp
+  			user=gets.chomp
   			puts "password:"
   			password=gets.chomp
-    		bookie=self.verificaBookie(user,password)
+    		bookie=@main.verificaBookie(user,password)
     		if bookie
     			"LOGADO COMO BOOKIE"
+          nome = @main.encontraBookie(user)
     			@login=2
     			@flag=false
     		end
@@ -73,69 +47,22 @@ class Facade
 		end
 	end
 
+
+
 	def criaConta
-		#@flag=true
-		#while @flag
 		puts "Menu Criacao de Conta
       	1: Apostador
-      	2: Bookie".light_blue
+      	2: Bookie"
 		case gets.strip
   		when "1"
   			puts "\e[H\e[2J"
-    		self.criarApostadorMain
+    		@main.criarApostador
   		when "2"
   			puts "\e[H\e[2J"
-    		self.criarBookieMain
+    		@main.criarBookie
   		else
   			puts "\e[H\e[2J"
   			puts "Opcao Invalida"
-		end
-		#end
-	end
-
-	def criarBookieMain
-		bookie=@bookie.criarBookie
-		tam=@listaBookies.length
-		@listaBookies[bookie.nickname]=bookie
-	end
-
-
-	def criarApostadorMain
-		apostador=@apostador.criarApostador
-		puts "Lista de apostas: #{apostador.listaApostas}"
-		tam=@listaApostadores.length
-		@listaApostadores[apostador.nickname]=apostador
-	end
-
-	def encontraBookie(key)
-		@listaBookies[key]
-	end
-
-	def encontraApostador(key)
-		@listaApostadores[key]
-	end
-
-	def criarApostaMain(apostador)
-		aposta=@aposta.criarAposta(apostador)
-		tam=@listaApostas.length
-		@listaApostas[tam]=aposta
-	end
-
-	def imprimeApostadores
-		for key in @listaApostadores.keys()
-   		 puts "Nick #{key} => Apostador =>> Nome: #{@listaApostadores[key].nome}"
-		end
-	end
-
-	def imprimeBookies
-		for key in @listaBookies.keys()
-   		 puts "Nick #{key} => Bookie =>> Nome: #{@listaBookies[key].nome}"
-		end
-	end
-
-	def imprimeApostas
-		for key in @listaApostas.keys()
-   		 puts "Nick #{key} => Apostador =>> Nome: #{@listaApostadores[key].nome}"
 		end
 	end
 
@@ -173,9 +100,9 @@ class Facade
 	def mainMenu
 		while @flag
     	puts "Bem Vindo ao menu Inicial
-     	1: Registar
-      	2: Login
-      	0: Sair".yellow
+     	  1: Registar
+        2: Login
+        0: Sair"
 		case gets.strip
   		when "1"
     		puts "Criar Conta"
@@ -195,24 +122,25 @@ class Facade
 		self.dadosMenuBookie
 		opcao = gets.strip
 		while opcao!=0
-		case gets.strip
-  		when "1"
+		case opcao
+  		when "1" #
     		puts "Criar Evento"
-    		break
-  		when "2"
+        @main.criarEvento
+  		when "2" #
     		puts "Mostrar Eventos"
-    		break
-  		when "3"
+        @main.showEventos
+  		when "3" #
     		puts "Editar Odds"
-    		break
-    	when "4"
+        @main.editarOdds
+    	when "4" #
     		puts "Historico Odds de um Evento"
-    		break
+        @main.showHistorico
     	when "5"
     		puts "Mostrar Interesse em Evento"
     		break
     	when "6"
     		puts "Mostrar Lista de Apostas de Evento"
+        @main.mostraListaApostas
     		break
     	when "7"
     		puts "Finalizar Evento"
@@ -220,6 +148,8 @@ class Facade
     	else
     		break
 		end
+    self.dadosMenuBookie
+    opcao = gets.strip
 		end
 		@login=-1
 		@flag=true
@@ -229,16 +159,15 @@ class Facade
 		self.dadosMenuApostador
 		opcao = gets.strip
 		while opcao!=0
-		case gets.strip
+		case opcao
   		when "1"
     		puts "Mostrar Eventos"
-    		break
+        @main.showEventos
   		when "2"
     		puts "Apostar em Eventos"
-    		break
+        @main.criarApostaEvento(@nome)
   		when "3"
     		puts "Ver Estado Apostas em Evento"
-    		break
     	when "4"
     		puts "Deposito"
     		#self.depositar
@@ -251,7 +180,11 @@ class Facade
     		puts "Consultar Evento"
     		#self.Consultar
     		break
+      else
+        break
 		end
+    self.dadosMenuApostador
+    cena = gets.strip
 		end
 		@login=-1
 		@flag=true
@@ -288,7 +221,7 @@ class Facade
       	6: Mostrar Lista de Apostas de Evento
       	7: Finalizar Evento
       	0: Menu Inicial
-      	Opcao".red
+      	Opcao: "
 	end
 
 	def dadosMenuApostador
@@ -300,27 +233,12 @@ class Facade
       	5: Levantamento
       	6: Consultar Saldo
       	0: Menu Inicial
-      	Opcao".blue
+      	Opcao: "
 	end
 end
 
 
 
 vista = Facade.new
-#vista.criarApostadorMain
-#apostador=vista.encontraApostador(0)
-#aposta=vista.criarApostaMain(apostador)
-#puts "Aposta => Nome do Apostador: #{aposta.apostador.nome}, Valor apostado: #{aposta.valor}"
-#vista.criarBookieMain
-#vista.criarApostadorMain
-#vista.criarApostadorMain
-#vista.imprimeBookies
-#verificao1=vista.verificaApostador("Lbr1","123")
-#verificao2=vista.verificaApostador("Lbr2","123")
-#puts "verificacao1 #{verificao1}"
-#puts "verificacao2 #{verificao2}"
 vista.main
-#vista.imprimeApostadores
-#vista.mainMenu
-#vista.main
-#vista.dadosMenuApostador
+
