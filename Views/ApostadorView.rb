@@ -1,7 +1,7 @@
 #require_relative'Apostador.rb'
 
-class ApostadorView	
-	
+class ApostadorView
+
 	def initialize()
 	end
 
@@ -10,18 +10,16 @@ class ApostadorView
 		nome =gets.chomp
 		puts "Insira o email do Apostador."
 		mail =gets.chomp
+		puts "Password"
+		pass = gets.chomp
+		puts "Nickname"
+		nickname = gets.chomp
 		puts "Insira o valor."
 		montante =gets.chomp
-		apostador=[nome,mail,montante]
+		apostador=[nome,mail,pass,nickname,montante]
 	end
 
-	def verApostador(nome,mail,disponivel)
-		"Apostador: #{nome}, mail: #{mail} e saldo: #{disponivel}"
+	def verApostador(apostador)
+		"Apostador: #{apostador.nome}, mail: #{apostador.mail} e saldo: #{apostador.disponivel}"
 	end
 end
-
-
-teste=ApostadorView.new
-
-cenas=teste.verApostador("coisa","cenas",16)
-puts cenas

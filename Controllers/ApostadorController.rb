@@ -1,33 +1,31 @@
 #require_relative'Utilizador.rb'
-#require_relative'Apostador.rb'
-#require_relative'ApostadorView.rb'
+require_relative '../Models/Apostador'
+require_relative'../Views/ApostadorView'
 
 class ApostadorController
-	
+
 	attr_accessor :apostadorView,:apostador
 
-	def initialize()
+	def initialize
 		@apostadorView=ApostadorView.new
-		@apostador=Apostador.new
+		@apostador=Hash.new{"Sem Apostadores"}
 	end
 
-	def initialize(nome,mail,password,nickname,disponivel)
-		@apostador.nome=nome
-		@apostador.mail=mail
-		@apostador.password=password
-		@apostador.nickname=nickname
-		@apostador.disponivel=disponivel
-	end
-
-	def criarApostador()
+	def criarApostador
 		lista=@apostadorView.criarApostadorView
-		@apostador.nome=lista[0]
-		@apostador.mail=lista[1]
-		@apostador.disponivel=lista[2]
-		
+		@apostador[lista[2]] = Apostador.new(*lista)
 	end
+
+	def mostraApostadores
+		@apostador.each do |nick, apostador|
+      puts nick
+      print apostadorView.verApostador(apostador)
+      end
+	end
+
+
 	def levantamento(valor)
-		if testaDisponivel(valor) 
+		if testaDisponivel(valor)
 			@apostador.disponivel -= valor
 		else
 			puts "Saldo insuficiente"
@@ -48,5 +46,5 @@ class ApostadorController
 		@apostador.verificaUtilizador(nome,password)
 	end
 
-	
+
 end

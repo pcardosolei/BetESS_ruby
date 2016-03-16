@@ -1,5 +1,5 @@
 class ApostaController
-	
+
 	attr_accessor :apostaView,:aposta
 
 	def initialize()
@@ -24,7 +24,7 @@ class ApostaController
 		@aposta.estado=false
 		if vencedor==@aposta.opcao
 			@aposta.apostador.actualizaDisponivel(@aposta.odd * @aposta.valor)
-			
+
 		end
 	end
 
