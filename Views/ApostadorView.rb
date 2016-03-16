@@ -22,6 +22,18 @@ class ApostadorView
 		"Apostador: #{apostador.nome}, mail: #{apostador.mail}, password #{apostador.password}, nick #{apostador.nick} e saldo: #{apostador.disponivel}"
 	end
 
+	def consultaSaldo(apostador)
+		"Saldo Disponivel = #{apostador.disponivel}"
+	end
+
+	def levantamento
+		puts "Valor a levantar?"
+    valor = gets.strip
+	end
+
+	def saldoInsuficiente
+		puts "Saldo insuficiente"
+	end
 	def listaApostadores(apostadores)
 		apostadores.each do |nick, apostador|
 			apostador.verApostador

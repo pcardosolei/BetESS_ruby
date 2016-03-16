@@ -26,7 +26,7 @@ class Facade
     		apostador=@main.verificaApostador(user,password)
     		if apostador
     			puts "LOGADO COMO APOSTADOR"
-          nome = @main.encontraApostador(user)
+          @nome = user
     			@login=1
     			@flag=false
     		end
@@ -39,7 +39,7 @@ class Facade
     		bookie=@main.verificaBookie(user,password)
     		if bookie
     			"LOGADO COMO BOOKIE"
-          nome = @main.encontraBookie(user)
+          @nome = user
     			@login=2
     			@flag=false
     		end
@@ -64,37 +64,6 @@ class Facade
   			puts "\e[H\e[2J"
   			puts "Opcao Invalida"
 		end
-	end
-
-	def consultarSaldoMain(apostador)
-		@listaApostadores[apostador.nickname].consultaDisponivel
-	end
-
-
-	def consultarSaldo
-		self.consultarSaldoMain(apostador)
-	end
-
-	def levantamentoMain(valor,apostador)
-		@listaApostadores[apostador.nickname].levantamento(valor)
-	end
-
-
-	def levantamento
-		puts "Valor a levantar?"
-		valor = gets.strip
-		self.levantarMain(valor,apostador)
-	end
-
-	def depositarMain(valor,apostador)
-		@listaApostadores[apostador.nickname].actualizaDisponivel(valor)
-	end
-
-
-	def depositar
-		puts "Valor a depositar?"
-		valor = gets.strip
-		self.depositarMain(valor,apostador)
 	end
 
 	def mainMenu
@@ -137,14 +106,13 @@ class Facade
         @main.showHistorico
     	when "5"
     		puts "Mostrar Interesse em Evento"
-    		break
+    		@main.mostrarInteresse(@nome)
     	when "6"
-    		puts "Mostrar Lista de Apostas de Evento"
+    		puts "Mostrar Lista de Apostas de Evento" #
         @main.mostraListaApostas
-    		break
     	when "7"
     		puts "Finalizar Evento"
-    		break
+        @main.fechaEvento
     	else
     		break
 		end
@@ -161,30 +129,28 @@ class Facade
 		while opcao!=0
 		case opcao
   		when "1"
-    		puts "Mostrar Eventos"
+    		puts "Mostrar Eventos" #
         @main.showEventos
   		when "2"
-    		puts "Apostar em Eventos"
+    		puts "Apostar em Eventos" #
         @main.criarApostaEvento(@nome)
   		when "3"
-    		puts "Ver Estado Apostas em Evento"
+    		puts "Ver Estado Apostas em Evento" #
+        @main.verEstadoApostas(@nome)
     	when "4"
     		puts "Deposito"
-    		#self.depositar
-    		break
+    		@main.deposito(@nome)
     	when "5"
     		puts "Levantamento"
-    		#self.levantamento
-    		break
+    		@main.levantamento(@nome)
     	when "6"
-    		puts "Consultar Evento"
-    		#self.Consultar
-    		break
+    		puts "Consultar Saldo"
+    		@main.consultarSaldo(@nome)
       else
         break
 		end
     self.dadosMenuApostador
-    cena = gets.strip
+    opcao = gets.strip
 		end
 		@login=-1
 		@flag=true

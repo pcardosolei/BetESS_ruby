@@ -10,7 +10,7 @@ class Evento
   def initialize(equipas)
     @equipas = equipas
     @vencedor = " "
-    @state = false
+    @state = true
     @apostas = Hash.new {"No bettings"}
     @bookie = " "
     @historico = Historico.new(equipas)
@@ -22,7 +22,6 @@ class Evento
       end
       @historico.ultimaOdd(equipas)
   end
-
 
   def open
     @state=true

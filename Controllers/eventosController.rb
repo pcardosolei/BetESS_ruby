@@ -50,5 +50,8 @@ class EventosController
     @view.getEvent(eventos)
   end
 
+  def addObserver(bookie,evento)
+    evento.adicionar_observer(bookie)
+  end
 end
 
