@@ -37,16 +37,20 @@ class MainController
     @eventoControl.toString(evento)
   end
 
+  def showHistorico
+    evento = @eventoControl.getEvent(@eventos)
+    @eventoControl.showHistorico(evento)
+  end
 
   #Aposta
   def criarApostaEvento
     evento = @eventoControl.getEvent(@eventos)
-    @apostaControl.criarAposta(@listaApostadores['luis'],evento)
+     @apostaControl.criarAposta(@listaApostadores['luis'],evento)
   end
 
   def mostraListaApostas
     evento = @eventoControl.getEvent(@eventos)
-    @ApostaController.mostraApostas(evento)
+    @apostaControl.mostraApostas(evento)
   end
 
   #Bookie
@@ -88,8 +92,10 @@ luis = MainController.new
 luis.addEvento(evento1)
 luis.addEvento(evento2)
 luis.showEventos
-#luis.editarOdds
+luis.editarOdds
+luis.showHistorico
 #luis.showEventos
+#luis.criarApostaEvento
 #luis.mostraListaApostas
 
 

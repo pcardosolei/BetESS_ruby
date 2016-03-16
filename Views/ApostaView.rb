@@ -26,7 +26,7 @@ class ApostaView
 
 	  def mostraApostas(evento)
     evento.apostas.each do |id, aposta|
-      puts "#{aposta.escolha} - #{aposta.valor}"
+      puts "#{aposta.opcao} - #{aposta.valor}"
     	end
   	end
 

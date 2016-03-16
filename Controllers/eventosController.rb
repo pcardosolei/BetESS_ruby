@@ -1,11 +1,13 @@
 require_relative "../Models/Evento"
 require_relative "../Views/EventoView"
+require_relative "HistoricoController"
 
 
 class EventosController
 
   def initialize
     @view = EventoView.new
+    @historicoControl = HistoricoController.new
   end
 
   def addEvento
@@ -20,10 +22,15 @@ class EventosController
 
   def novasOdds(evento)
     @view.novasOdds(evento)
+    @historicoControl.ultimaOdd(evento.equipas,evento.historico)
   end
 
   def toString(evento)
     @view.toString(evento)
+  end
+
+  def showHistorico(evento)
+    @historicoControl.toString(evento)
   end
 
   def showEventos(eventos)

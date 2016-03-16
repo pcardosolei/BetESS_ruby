@@ -1,25 +1,20 @@
 require_relative "../Controllers/HistoricoController.rb"
+require_relative "../Views/HistoricoView"
 
-attr_accessor :historico
+
 
 class HistoricoController
 
-  def initialize(equipas)
-    @historico = Historico.new(equipas)
+  def initialize
+    @view = HistoricoView.new
   end
 
-  def ultimaOdd(ultima)
-    @historico.setOdds(ultima)
-      end
+  def ultimaOdd(novas,historico)
+    historico.setOdds(novas)
+  end
 
-  def toString
-      @historico.equipas.each_pair do |equipa , odd|
-        print equipa + " > "
-        @historico.equipas[equipa].each do |odd|
-          print odd + " | "
-        end
-        puts
-      end
+  def toString(evento)
+      @view.toString(evento)
   end
 end
 
