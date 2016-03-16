@@ -1,7 +1,7 @@
 require_relative'Apostador.rb'
 
-class ApostadorView	
-	
+class ApostadorView
+
 	def initialize()
 	end
 

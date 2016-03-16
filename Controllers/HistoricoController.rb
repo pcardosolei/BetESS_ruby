@@ -1,4 +1,4 @@
-require_relative "./historico.rb"
+require_relative "../Controllers/HistoricoController.rb"
 
 attr_accessor :historico
 

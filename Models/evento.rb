@@ -1,14 +1,17 @@
-require_relative "./historicoController"
+require_relative './Historico'
 
 class Evento
- attr_accessor :equipas, :vencedor, :state
+ attr_accessor :vencedor, :state, :historico
+ attr_reader :equipas
 
   # => recebe uma hash
   def initialize(equipas)
     @equipas = equipas
-    @vencedor = vencedor
-    @state = state
-    @historico = HistoricoController.new(equipas)
+    @vencedor = " "
+    @state = false
+    @apostas = Hash.new {"No bettings"}
+    @bookie = " "
+    @historico = Historico.new(equipas)
   end
 
   def newOdds(equipas)
@@ -17,34 +20,9 @@ class Evento
       end
       @historico.ultimaOdd(equipas)
   end
-
-  def showEquipas
-      return @equipas.keys
-  end
-
-  def mostraHistorico
-    @historico.toString
-  end
-
-  def toString
-    @equipas.each do |equipa, odd|
-      puts "#{equipa} -->  #{odd}"
-    end
-  end
-
-  def mostraApostas
-    @apostas.each do |x|
-      puts "#{x}"
-    end
-  end
-
-  def addAposta
-  end
 end
 
-  #meter bookie, listaApostas
-  #observers
-  #
+
 
 
 
