@@ -8,5 +8,6 @@ class Aposta
 		@opcao=opcao
 		@odd=odd
 		@apostador=apostador
+    @estado = estado
 	end
 end

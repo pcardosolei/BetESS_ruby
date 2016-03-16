@@ -45,7 +45,7 @@ class MainController
   #Aposta
   def criarApostaEvento
     evento = @eventoControl.getEvent(@eventos)
-     @apostaControl.criarAposta(@listaApostadores['luis'],evento)
+    @apostaControl.criarAposta(@listaApostadores['luis'],evento)
   end
 
   def mostraListaApostas
@@ -77,6 +77,12 @@ class MainController
   def listaApostadores
     @apostadorController.listaApostadores
   end
+
+  def verEstadoApostas
+    evento = @eventoControl.getEvent(@eventos)
+    @apostaControl.verEstadoApostas(evento,"luis")
+  end
+
 end
 
 
@@ -91,12 +97,13 @@ ap2 = Apostador.new("paulo","paulo@gmail.com","1234","paulo","0")
 luis = MainController.new
 luis.addEvento(evento1)
 luis.addEvento(evento2)
-luis.showEventos
-luis.editarOdds
-luis.showHistorico
 #luis.showEventos
-#luis.criarApostaEvento
-#luis.mostraListaApostas
+#luis.editarOdds
+#luis.showHistorico
+#luis.showEventos
+luis.criarApostaEvento
+luis.verEstadoApostas
+
 
 
 #luis.criarApostador

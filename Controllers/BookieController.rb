@@ -2,7 +2,7 @@ require_relative'Bookie.rb'
 require_relative'BookieView.rb'
 
 class BookieController
-	
+
 	attr_accessor :bookieView,:bookie
 
 	def initialize()
