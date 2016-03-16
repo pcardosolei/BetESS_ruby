@@ -1,23 +1,10 @@
 class Evento
  include Subject
- #definir variaveis attr_reader :
-
- def initialize
- 	@observers = []
- end
-
- def add_observer(observer)
- 	@observers << observer
- end
-
- def notify_observers
-    @observers.each do |observer|
-      observer.update(self)
-    end
- end
+ #definir variaveis attr_reader : 
 
 
- def fazCenas(cena)
-   notify_observers
+ def fecharEvento(evento)
+  #close(evento)
+  notify_observers
  end
 end
