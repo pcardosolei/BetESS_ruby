@@ -1,8 +1,7 @@
-require_relative'Apostador.rb'
 
 class ApostadorView
 
-	def initialize()
+	def initialize
 	end
 
 	def criarApostadorView
@@ -19,7 +18,14 @@ class ApostadorView
 		apostador=[nome,mail,password,nick,montante]
 	end
 
-	def verApostador(nome,mail,password,nick,disponivel)
-		"Apostador: #{nome}, mail: #{mail}, password #{password}, nick #{nick} e saldo: #{disponivel}"
+	def verApostador(apostador)
+		"Apostador: #{apostador.nome}, mail: #{apostador.mail}, password #{apostador.password}, nick #{apostador.nick} e saldo: #{apostador.disponivel}"
 	end
+
+	def listaApostadores(apostadores)
+		apostadores.each do |nick, apostador|
+			apostador.verApostador
+		end
+	end
+
 end

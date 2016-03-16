@@ -18,10 +18,8 @@ class EventosController
     @eventos.delete(id)
   end
 
-  def oddEvento
-    @eventos.equipas.each do |equipa, odd|
-    puts equipa + "--" + odd
-    end
+  def novasOdds(evento)
+    @view.novasOdds(evento)
   end
 
   def toString(evento)

@@ -1,8 +1,8 @@
 class Evento
  include Subject
- #definir variaveis attr_reader : 
+ #definir variaveis attr_reader :
 
- def initialize()
+ def initialize
  	@observers = []
  end
 

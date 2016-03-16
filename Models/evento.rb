@@ -1,7 +1,7 @@
 require_relative './Historico'
 
 class Evento
- attr_accessor :vencedor, :state, :historico
+ attr_accessor :vencedor, :state, :historico, :apostas
  attr_reader :equipas
 
   # => recebe uma hash

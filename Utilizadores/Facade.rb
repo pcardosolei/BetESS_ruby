@@ -10,7 +10,7 @@ class Facade
 		@aposta=ApostaController.new
 		@bookie=BookieController.new
 		@listaApostadores=Hash.new("Lista de Apostadores")
-		@listaBookies=Hash.new("Lista de Bokies")
+		@listaBookies=Hash.new("Lista de Bookies")
 		@flag=true
 		@login=0
 	end

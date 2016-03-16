@@ -31,6 +31,15 @@ class EventoView
         end
   end
 
+  def novasOdds(evento)
+    evento.equipas.each do |equipa, odd|
+        puts "#{equipa} --> #{odd}"
+        puts "Insira odds - #{equipa}"
+        oddJogo = gets.chomp
+        evento.equipas[equipa] = oddJogo
+        end
+  end
+
   def stringJogo(evento)
     keyEvento = evento.equipas.keys
     print " - #{keyEvento[0]} -- #{keyEvento[2]}"

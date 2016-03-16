@@ -1,5 +1,5 @@
 require_relative '../Models/Apostador'
-require_relative'../Views/ApostadorView'
+require_relative '../Views/ApostadorView'
 
 class ApostadorController
 
@@ -42,5 +42,7 @@ class ApostadorController
 		@apostador.verificaUtilizador(nome,password)
 	end
 
-
+	def listaApostadores(apostadores)
+		@ApostadorView.listaApostadores(apostadores)
+	end
 end
