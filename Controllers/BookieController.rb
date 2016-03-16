@@ -5,7 +5,7 @@ require_relative'../Views/BookieView.rb'
 
 class BookieController
 	#include Observer fazer uma classe observer vazia para enganar o ..?
-	
+
 	attr_accessor :bookieView,:bookie
 
 	def initialize()
@@ -33,3 +33,4 @@ class BookieController
 
 	end
 end
+

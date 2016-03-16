@@ -27,15 +27,14 @@ class ApostaView
     def mostraApostas(evento)
     evento.apostas.each do |id, aposta|
       puts "#{aposta.opcao} - #{aposta.valor}"
-      end
-    end
+    	end
+  	end
 
-    def verEstadoApostas(evento,apostador)
-      evento.apostas.each do |id, aposta|
-        if aposta.apostador = apostador
-            puts "#{aposta.opcao} |-| #{aposta.valor} |-| #{aposta.odd} |-| #{aposta.estado}"
-         end
-      end
-    end
-
+  	def verEstadoApostas(evento,apostador)
+  		evento.apostas.each do |id, aposta|
+  			if aposta.apostador = apostador
+  					puts "#{aposta.opcao} |-| #{aposta.valor} |-| #{aposta.odd} |-| #{aposta.estado}"
+  			 end
+  		end
+  	end
 end

@@ -28,7 +28,7 @@ class ApostaController
   end
 
   def verEstadoApostas(evento,apostador)
-    @view.verEstadoApostas(evento,apostador)
+  	@view.verEstadoApostas(evento,apostador)
   end
 
 end

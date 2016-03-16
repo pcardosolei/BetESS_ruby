@@ -89,6 +89,11 @@ class MainController
     @apostadorController.listaApostadores
   end
 
+  def verEstadoApostas(apostador)
+    evento = @eventoControl.getEvent(@eventos)
+    @apostaControl.verEstadoApostas(evento,apostador)
+  end
+
   def verificaApostador(nickname,password)
     flag=false
     for key in @listaApostadores.keys()
