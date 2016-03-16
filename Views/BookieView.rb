@@ -1,4 +1,4 @@
-require_relative'Bookie.rb'
+require_relative'../Models/Bookie.rb'
 
 class BookieView	
 	

@@ -3,6 +3,7 @@ require_relative "../Views/EventoView"
 
 
 class EventosController
+  
 
   def initialize
     @view = EventoView.new
@@ -22,8 +23,16 @@ class EventosController
     @view.novasOdds(evento)
   end
 
+  def abreEvento(evento)
+    evento.open
+  end
+
   def toString(evento)
     @view.toString(evento)
+  end
+
+  def fechaEvento(evento)
+    evento.close
   end
 
   def showEventos(eventos)
