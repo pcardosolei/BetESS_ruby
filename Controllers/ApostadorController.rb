@@ -3,7 +3,7 @@ require_relative '../Views/ApostadorView'
 
 class ApostadorController
 
-	attr_accessor :apostadorView,:apostador
+	attr_accessor :apostadorView
 
 	def initialize
 		@apostadorView=ApostadorView.new
