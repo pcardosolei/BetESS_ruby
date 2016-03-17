@@ -4,7 +4,8 @@ module Subject
   end
 
   def adicionar_observer(observer)
-    @listaObservers << observer
+    @listaObservers = @listaObservers.to_a.push observer
+    #@listaObservers << observer
   end
 
   def apagar_observer(observer)

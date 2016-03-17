@@ -44,9 +44,9 @@ class MainController
     @eventoControl.showHistorico(evento)
   end
 
-  def fechaEvento(evento)
+  def fechaEvento
     evento = @eventoControl.getEvent(@eventos)
-    @eventoControl.fechaEvento
+    @eventoControl.fechaEvento(evento)
   end
 
   #Aposta
@@ -82,7 +82,7 @@ class MainController
 
   def mostrarInteresse(bookie)
     evento = @eventoControl.getEvent(@eventos)
-    @eventoControl.addObserver(@listaBookies[bookie],evento)
+    @eventoControl.addObserver(@bookieControl,evento)
   end
   #Apostador
   def criarApostador
@@ -115,17 +115,15 @@ class MainController
 
 
   def consultarSaldo(apostador)
-    selecionado = @listaApostadores[apostador]
-    puts "#{selecionado}"
-    @apostadorController.consultarSaldo(selecionado)
+    @apostadorController.consultarSaldo(@listaApostadores[apostador])
   end
 
   def levantamento(apostador)
-    @ApostadorController.levantamento(@listaApostadores[apostador])
+    @apostadorController.levantamento(@listaApostadores[apostador])
   end
 
   def deposito(apostador)
-    @ApostadorController.deposito(@listaApostadores[apostador])
+    @apostadorController.deposito(@listaApostadores[apostador])
   end
 
 

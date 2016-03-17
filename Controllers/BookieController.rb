@@ -24,11 +24,11 @@ class BookieController
 	def update(obj,tipo)
 		case tipo
 		when "fechado"
-			total=0
+			#total=0
 			obj.apostas.each do |x|
-				total +=x
-			end
-			puts "Total #{total}"
+				puts "Evento Fechado"
+				end
+			#puts "Total #{total}"
 		end
 
 	end

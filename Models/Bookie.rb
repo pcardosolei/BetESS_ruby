@@ -9,6 +9,7 @@ class Bookie < Utilizador
 	def verificaUtilizador(nome,password)
 		super
 	end
+
 end
 
 

@@ -23,12 +23,12 @@ class ApostadorView
 	end
 
 	def consultaSaldo(apostador)
-		"Saldo Disponivel = #{apostador.disponivel}"
+		puts "Saldo Disponivel = #{apostador.disponivel}"
 	end
 
 	def levantamento
-		puts "Valor a levantar?"
-    valor = gets.strip
+		puts "Valor?"
+    valor = gets.strip.to_i
 	end
 
 	def saldoInsuficiente

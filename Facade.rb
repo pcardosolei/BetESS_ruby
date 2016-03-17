@@ -92,17 +92,17 @@ class Facade
 		opcao = gets.strip
 		while opcao!=0
 		case opcao
-  		when "1" #
-    		puts "Criar Evento"
+  		when "1"
+    		puts "Criar Evento" #
         @main.criarEvento
-  		when "2" #
-    		puts "Mostrar Eventos"
+  		when "2"
+    		puts "Mostrar Eventos" #
         @main.showEventos
   		when "3" #
-    		puts "Editar Odds"
+    		puts "Editar Odds" #
         @main.editarOdds
-    	when "4" #
-    		puts "Historico Odds de um Evento"
+    	when "4"
+    		puts "Historico Odds de um Evento" #
         @main.showHistorico
     	when "5"
     		puts "Mostrar Interesse em Evento"
@@ -138,14 +138,14 @@ class Facade
     		puts "Ver Estado Apostas em Evento" #
         @main.verEstadoApostas(@nome)
     	when "4"
-    		puts "Deposito"
+    		puts "Deposito" #
     		@main.deposito(@nome)
     	when "5"
-    		puts "Levantamento"
+    		puts "Levantamento" #
     		@main.levantamento(@nome)
     	when "6"
-    		puts "Consultar Saldo"
-    		@main.consultarSaldo(@nome)
+    		puts "Consultar Saldo" #
+     		@main.consultarSaldo(@nome)
       else
         break
 		end
